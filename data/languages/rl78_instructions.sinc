@@ -102,8 +102,8 @@
 }
 
 # MOV ES, #byte
-:MOV ES, u8 is opcode=0x41 & ES; u8 {
-    ES = u8;
+:MOV ES, ulo8 is opcode=0x41 & ES; ulo8 {
+    ES = ulo8;
 }
 
 # MOV A, ES
@@ -117,8 +117,8 @@
 }
 
 # MOV CS, #byte
-:MOV CS, u8 is opcode=0xCE & CS; opcode=0xFC; u8 {
-    CS = u8;
+:MOV CS, ulo8 is opcode=0xCE & CS; opcode=0xFC; ulo8 {
+    CS = ulo8;
 }
 
 #

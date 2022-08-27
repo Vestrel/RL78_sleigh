@@ -3,9 +3,6 @@
 <!-- See Relax specification: Ghidra/Framework/SoftwareModeling/data/languages/processor_spec.rxg -->
 
 <processor_spec>
-  <properties>
-    <property key="customDisassemblerClass" value="ghidra.rl78.disassembly.RL78Disassembler"/>
-  </properties>
   <programcounter register="PC"/>
   <segmentop space="ram" userop="segment" farpointer="yes">
     <pcode>
