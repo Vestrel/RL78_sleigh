@@ -19,6 +19,7 @@
     <double_size value="4"/>
     <long_double_size value="8"/>
   </data_organization>
+  <spacebase name="HL" register="HL0" space="near"/>
   <global>
     <range space="ram"/>
     <range space="near"/>
