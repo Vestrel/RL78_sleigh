@@ -75,7 +75,7 @@ sfr_reg_byte: ext_sfr is ext_sfr & is_sfr2 {
     export ext_sfr;
 }
 
-sfr_reg_word: ext_sfrw is ext_sfrw & is_sfr2 & bit16_0=0 {
+sfr_reg_word: ext_sfrw is ext_sfrw & is_sfr2 {
     export ext_sfrw;
 }
 
@@ -99,20 +99,21 @@ far_offset8: uaddr8 is uaddr8 {
     export *[const]:3 uaddr8;
 }
 
-saddr_val: val is uaddr8 [val = 0xFE00 + uaddr8;] { export *[const]:3 val; }
+saddr_val: val is uaddr8 [val = 0xFFE00 + uaddr8;] { export *[const]:3 val; }
 
 saddr: uaddr8 is uaddr8 & saddr_val {
-    export *[near]:1 saddr_val;
+    export *:1 saddr_val;
 }
 
 saddrp: uaddr8 is uaddr8 & saddr_val & bit8_0=0 {
-    export *[near]:2 saddr_val;
+    export *:2 saddr_val;
 }
 
 uaddr16: uaddr16_data is uaddr16_data { export *[const]:2 uaddr16_data; }
 
 addr16: uaddr16 is es_prefix=0 & uaddr16 {
-    export *[near]:1 uaddr16;
+	loc:3 = segment(0xf:1, uaddr16);
+    export *[ram]:1 loc;
 }
 
 addr16: ES:"!"uaddr16 is es_prefix=1 & uaddr16 & ES {
@@ -120,15 +121,16 @@ addr16: ES:"!"uaddr16 is es_prefix=1 & uaddr16 & ES {
     export *[ram]:1 loc;
 }
 
-addr16w: uaddr16 is uaddr16 & bit16_0=0 {
-    export *[near]:2 uaddr16;
+addr16w: uaddr16 is uaddr16 {
+	loc:3 = segment(0xf:1, uaddr16);
+    export *[ram]:2 loc;
 }
 
-addr16w: a16w_sfr_reg is es_prefix=0 & a16w_sfr_reg & a16_sfr_offset=0x1fff & bit16_0=0 {
+addr16w: a16w_sfr_reg is es_prefix=0 & a16w_sfr_reg & a16_sfr_offset=0x1fff {
     export a16w_sfr_reg;
 }
 
-addr16w: ES:"!"uaddr16 is es_prefix=1 & uaddr16 & ES & bit16_0=0 {
+addr16w: ES:"!"uaddr16 is es_prefix=1 & uaddr16 & ES {
     local loc:3 = segment(ES, uaddr16);
     export *[ram]:2 loc;
 }
@@ -308,8 +310,9 @@ AddrHLOffsetC: ES:[HL+C] is es_prefix=1 & HL & C & ES {
 }
 
 AddrWordOffsetB: uaddr16[B] is es_prefix=0 & uaddr16 & B {
-    loc = uaddr16 + zext(B);
-    export *[near]:1 loc;
+    loc:3 = segment(0xf:1, uaddr16);
+	loc = loc + zext(B);
+    export *[ram]:1 loc;
 }
 
 AddrWordOffsetB: ES:uaddr16[B] is es_prefix=1 & uaddr16 & B & ES {
@@ -318,8 +321,9 @@ AddrWordOffsetB: ES:uaddr16[B] is es_prefix=1 & uaddr16 & B & ES {
 }
 
 AddrWordOffsetBW: uaddr16[B] is es_prefix=0 & uaddr16 & B {
-    loc = uaddr16 + zext(B);
-    export *[near]:2 loc;
+	loc:3 = segment(0xf:1, uaddr16);
+    loc = loc + zext(B);
+    export *[ram]:2 loc;
 }
 
 AddrWordOffsetBW: ES:uaddr16[B] is es_prefix=1 & uaddr16 & B & ES {
@@ -328,8 +332,9 @@ AddrWordOffsetBW: ES:uaddr16[B] is es_prefix=1 & uaddr16 & B & ES {
 }
 
 AddrWordOffsetC: uaddr16[C] is es_prefix=0 & uaddr16 & C {
-    loc = uaddr16 + zext(C);
-    export *[near]:1 loc;
+	loc:3 = segment(0xf:1, uaddr16);
+    loc = loc + zext(C);
+    export *[ram]:1 loc;
 }
 
 AddrWordOffsetC: ES:uaddr16[C] is es_prefix=1 & uaddr16 & C & ES {
@@ -338,8 +343,9 @@ AddrWordOffsetC: ES:uaddr16[C] is es_prefix=1 & uaddr16 & C & ES {
 }
 
 AddrWordOffsetCW: uaddr16[C] is es_prefix=0 & uaddr16 & C {
-    loc = uaddr16 + zext(C);
-    export *[near]:2 loc;
+	loc:3 = segment(0xf:1, uaddr16);
+    loc = loc + zext(C);
+    export *[ram]:2 loc;
 }
 
 AddrWordOffsetCW: ES:uaddr16[C] is es_prefix=1 & uaddr16 & C & ES {
@@ -348,8 +354,9 @@ AddrWordOffsetCW: ES:uaddr16[C] is es_prefix=1 & uaddr16 & C & ES {
 }
 
 AddrWordOffsetBC: uaddr16[BC] is es_prefix=0 & uaddr16 & BC {
-    loc = uaddr16 + zext(BC);
-    export *[near]:1 loc;
+	loc:3 = segment(0xf:1, uaddr16);
+    loc = loc + zext(BC);
+    export *[ram]:1 loc;
 }
 
 AddrWordOffsetBC: ES:uaddr16[BC] is es_prefix=1 & uaddr16 & BC & ES {
@@ -358,8 +365,9 @@ AddrWordOffsetBC: ES:uaddr16[BC] is es_prefix=1 & uaddr16 & BC & ES {
 }
 
 AddrWordOffsetBCW: uaddr16[BC] is es_prefix=0 & uaddr16 & BC {
-    loc = uaddr16 + zext(BC);
-    export *[near]:2 loc;
+	loc:3 = segment(0xf:1, uaddr16);
+    loc = loc + zext(BC);
+    export *[ram]:2 loc;
 }
 
 AddrWordOffsetBCW: ES:uaddr16[BC] is es_prefix=1 & uaddr16 & BC & ES {

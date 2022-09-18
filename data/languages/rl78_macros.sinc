@@ -105,7 +105,7 @@ macro inst_sarw(dst, n) {
 
 macro inst_cmp(dst, src) {
     Z = dst == src;
-    CY = dst < src;
+    CY = dst s< src;
     aux_borrow(dst, src);
 }
 
