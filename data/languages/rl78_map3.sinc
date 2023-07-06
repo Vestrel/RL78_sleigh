@@ -378,71 +378,75 @@
 }
 
 # OR1 CY, saddr.n
+:OR1 "CY", saddr"."0 is opcode=0x71; op_l=0x6 & op_h=0x0; saddr {
+    CY = ((saddr & 0x1) != 0) || CY;
+}
+
 :OR1 "CY", saddr"."1 is opcode=0x71; op_l=0x6 & op_h=0x1; saddr {
-    CY = (saddr & 0x2) != 0;
+    CY = ((saddr & 0x2) != 0) || CY;
 }
 
 # OR1 CY, saddr.n
 :OR1 "CY", saddr"."2 is opcode=0x71; op_l=0x6 & op_h=0x2; saddr {
-    CY = (saddr & 0x4) != 0;
+    CY = ((saddr & 0x4) != 0) || CY;
 }
 
 # OR1 CY, saddr.n
 :OR1 "CY", saddr"."3 is opcode=0x71; op_l=0x6 & op_h=0x3; saddr {
-    CY = (saddr & 0x8) != 0;
+    CY = ((saddr & 0x8) != 0) || CY;
 }
 
 # OR1 CY, saddr.n
 :OR1 "CY", saddr"."4 is opcode=0x71; op_l=0x6 & op_h=0x4; saddr {
-    CY = (saddr & 0x10) != 0;
+    CY = ((saddr & 0x10) != 0) || CY;
 }
 
 # OR1 CY, saddr.n
 :OR1 "CY", saddr"."5 is opcode=0x71; op_l=0x6 & op_h=0x5; saddr {
-    CY = (saddr & 0x20) != 0;
+    CY = ((saddr & 0x20) != 0) || CY;
 }
 
 # OR1 CY, saddr.n
 :OR1 "CY", saddr"."6 is opcode=0x71; op_l=0x6 & op_h=0x6; saddr {
-    CY = (saddr & 0x40) != 0;
+    CY = ((saddr & 0x40) != 0) || CY;
 }
 
 # OR1 CY, saddr.n
 :OR1 "CY", saddr"."7 is opcode=0x71; op_l=0x6 & op_h=0x7; saddr {
-    CY = (saddr & 0x80) != 0;
+    CY = ((saddr & 0x80) != 0) || CY;
 }
 
 # OR1 CY, [HL].n
 :OR1 "CY", AddrHL"."0 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0x8 {
-    CY = (AddrHL & 0x1) != 0;
+    CY = ((AddrHL & 0x1) != 0) || CY;
 }
 
 :OR1 "CY", AddrHL"."1 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0x9 {
-    CY = (AddrHL & 0x2) != 0;
+    CY = ((AddrHL & 0x2) != 0) || CY;
 }
 
 :OR1 "CY", AddrHL"."2 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0xA {
-    CY = (AddrHL & 0x4) != 0;
+    CY = ((AddrHL & 0x4) != 0) || CY;
 }
 
 :OR1 "CY", AddrHL"."3 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0xB {
-    CY = (AddrHL & 0x8) != 0;
+    CY = ((AddrHL & 0x8) != 0) || CY;
 }
 
 :OR1 "CY", AddrHL"."4 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0xC {
-    CY = (AddrHL & 0x10) != 0;
+    CY = ((AddrHL & 0x10) != 0) || CY;
 }
 
 :OR1 "CY", AddrHL"."5 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0xD {
-    CY = (AddrHL & 0x20) != 0;
+    CY = ((AddrHL & 0x20) != 0) || CY;
 }
 
 :OR1 "CY", AddrHL"."6 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0xE {
-    CY = (AddrHL & 0x40) != 0;
+    CY = ((AddrHL & 0x40) != 0) || CY;
 }
 
 :OR1 "CY", AddrHL"."7 is opcode=0x71 & AddrHL; op_l=0x6 & op_h=0xF {
-    CY = (AddrHL & 0x80) != 0;
+    CY = ((AddrHL & 0x80) != 0) || CY;
 }
 
 # XOR1 CY, saddr.n
@@ -931,15 +935,15 @@
 }
 
 :AND1 "CY", "AC" is opcode=0x71; op_l=0xD & op_h=0x4; sfr_byte=0xFA {
-    CY = CY & AC;
+    CY = CY && AC;
 }
 
 :AND1 "CY", "Z" is opcode=0x71; op_l=0xD & op_h=0x6; sfr_byte=0xFA {
-    CY = CY & Z;
+    CY = CY && Z;
 }
 
 :AND1 "CY", "IE" is opcode=0x71; op_l=0xD & op_h=0x7; sfr_byte=0xFA {
-    CY = CY & IE;
+    CY = CY && IE;
 }
 
 :AND1 "CY", A"."0 is opcode=0x71 & A; op_l=0xD & op_h=0x8 {
@@ -976,35 +980,35 @@
 
 
 :OR1 "CY", sfr"."0 is opcode=0x71; op_l=0xE & op_h=0x0; sfr {
-    CY = (sfr & 0x1) != 0;
+    CY = ((sfr & 0x1) != 0) || CY;
 }
 
 :OR1 "CY", sfr"."1 is opcode=0x71; op_l=0xE & op_h=0x1; sfr {
-    CY = (sfr & 0x2) != 0;
+    CY = ((sfr & 0x2) != 0) || CY;
 }
 
 :OR1 "CY", sfr"."2 is opcode=0x71; op_l=0xE & op_h=0x2; sfr {
-    CY = (sfr & 0x4) != 0;
+    CY = ((sfr & 0x4) != 0) || CY;
 }
 
 :OR1 "CY", sfr"."3 is opcode=0x71; op_l=0xE & op_h=0x3; sfr {
-    CY = (sfr & 0x8) != 0;
+    CY = ((sfr & 0x8) != 0) || CY;
 }
 
 :OR1 "CY", sfr"."4 is opcode=0x71; op_l=0xE & op_h=0x4; sfr {
-    CY = (sfr & 0x10) != 0;
+    CY = ((sfr & 0x10) != 0) || CY;
 }
 
 :OR1 "CY", sfr"."5 is opcode=0x71; op_l=0xE & op_h=0x5; sfr {
-    CY = (sfr & 0x20) != 0;
+    CY = ((sfr & 0x20) != 0) || CY;
 }
 
 :OR1 "CY", sfr"."6 is opcode=0x71; op_l=0xE & op_h=0x6; sfr {
-    CY = (sfr & 0x40) != 0;
+    CY = ((sfr & 0x40) != 0) || CY;
 }
 
 :OR1 "CY", sfr"."7 is opcode=0x71; op_l=0xE & op_h=0x7; sfr {
-    CY = (sfr & 0x80) != 0;
+    CY = ((sfr & 0x80) != 0) || CY;
 }
 
 :NOP is opcode=0x71; op_l=0xE & op_h=0x0; sfr_byte=0xFA {
@@ -1024,35 +1028,35 @@
 }
 
 :OR1 "CY", A"."0 is opcode=0x71 & A; op_l=0xE & op_h=0x8 {
-    CY = (A & 0x1) != 0;
+    CY = ((A & 0x1) != 0) || CY;
 }
 
 :OR1 "CY", A"."1 is opcode=0x71 & A; op_l=0xE & op_h=0x9 {
-    CY = (A & 0x2) != 0;
+    CY = ((A & 0x2) != 0) || CY;
 }
 
 :OR1 "CY", A"."2 is opcode=0x71 & A; op_l=0xE & op_h=0xA {
-    CY = (A & 0x4) != 0;
+    CY = ((A & 0x4) != 0) || CY;
 }
 
 :OR1 "CY", A"."3 is opcode=0x71 & A; op_l=0xE & op_h=0xB {
-    CY = (A & 0x8) != 0;
+    CY = ((A & 0x8) != 0) || CY;
 }
 
 :OR1 "CY", A"."4 is opcode=0x71 & A; op_l=0xE & op_h=0xC {
-    CY = (A & 0x10) != 0;
+    CY = ((A & 0x10) != 0) || CY;
 }
 
 :OR1 "CY", A"."5 is opcode=0x71 & A; op_l=0xE & op_h=0xD {
-    CY = (A & 0x20) != 0;
+    CY = ((A & 0x20) != 0) || CY;
 }
 
 :OR1 "CY", A"."6 is opcode=0x71 & A; op_l=0xE & op_h=0xE {
-    CY = (A & 0x40) != 0;
+    CY = ((A & 0x40) != 0) || CY;
 }
 
 :OR1 "CY", A"."7 is opcode=0x71 & A; op_l=0xE & op_h=0xF {
-    CY = (A & 0x80) != 0;
+    CY = ((A & 0x80) != 0) || CY;
 }
 
 

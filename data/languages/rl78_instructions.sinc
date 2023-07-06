@@ -1149,7 +1149,3 @@
 :^instruction is es_prefix=0 & opcode=0x11; epsilon ... & instruction [ es_prefix=1; ] {
     build instruction;
 }
-
-:HALT is opcode=0xff {
-	goto inst_start;
-}

@@ -29,6 +29,7 @@
     <register name="CES" hidden="true"/>
   </register_data>
   <default_memory_blocks>
-    <memory_block name="iram" start_address="near:0x0000" length="0xFFFF" initialized="false" mode="rw"/>
+    <memory_block name="fram" start_address="ram:0xF0000" length="0x10000" initialized="false" mode="rw"/>
+    <memory_block name="nram" start_address="near:0x0000" length="0x10000" byte_mapped_address="ram:0xF0000" mode="rw"/>
   </default_memory_blocks>
 </processor_spec>

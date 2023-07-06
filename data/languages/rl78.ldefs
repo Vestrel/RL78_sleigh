@@ -13,4 +13,16 @@
     <compiler name="default" spec="rl78.cspec" id="default"/>
     <external_name tool="DWARF.register.mapping.file" name="rl78.dwarf"/>
   </language>
+  <language processor="78K0R"
+            endian="little"
+            size="16"
+            variant="default"
+            version="1.3"
+            slafile="rl78.sla"
+            processorspec="rl78.pspec"
+            id="78K0R:LE:16:default">
+    <description>NEC 78K0R</description>
+    <compiler name="default" spec="78k0r.cspec" id="default"/>
+    <external_name tool="DWARF.register.mapping.file" name="rl78.dwarf"/>
+  </language>
 </language_definitions>

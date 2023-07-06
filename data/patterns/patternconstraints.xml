@@ -2,4 +2,7 @@
   <language id="rl78:LE:16:default">
     <patternfile>rl78_patterns.xml</patternfile>
   </language>
+  <language id="78K0R:LE:16:default">
+    <patternfile>rl78_patterns.xml</patternfile>
+  </language>
 </patternconstraints>
