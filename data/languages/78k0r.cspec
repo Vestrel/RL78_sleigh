@@ -33,11 +33,11 @@
   </returnaddress>
   <default_proto>
     <prototype name="__v2_call" strategy="register" extrapop="4" stackshift="4">
-      <input killedbycall="true" pointermax="4">
+      <input killedbycall="true" pointermax="3">
         <pentry minsize="1" maxsize="2">
           <register name="AX0"/>
         </pentry>
-        <pentry minsize="3" maxsize="3" metatype="ptr">
+        <pentry minsize="3" maxsize="3">
           <addr space="join" piece1="C0" piece2="AX0"/>
         </pentry>
         <pentry minsize="3" maxsize="4">
@@ -52,7 +52,7 @@
         <pentry minsize="1" maxsize="2">
           <register name="BC0"/>
         </pentry>
-        <pentry minsize="3" maxsize="3" metatype="ptr">
+        <pentry minsize="3" maxsize="3">
           <addr space="join" piece1="E0" piece2="BC0"/>
         </pentry>
         <pentry minsize="4" maxsize="4">
